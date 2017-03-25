@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+  </head>
+  <body onkeypress = "document.getElementById('addBox').focus();">
+    <div class="container">
+      <div class="header">Fan</div>
+        <div class="add">
+          <input type="text" placeholder="" class="task" id="addBox" onkeydown = "if (event.keyCode == 13) {addTask()}">
+        </div>
+        <div class="wrapper">
+          <div id="list">
+          </div>
+        </div>
+    </div>
+  </body>
+  <script src="renderer.js"></script>
+</html>
