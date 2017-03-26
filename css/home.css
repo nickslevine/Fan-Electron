@@ -30,6 +30,15 @@ body {
     -moz-user-select: none !important;
     -ms-user-select: none !important;
     user-select: none !important;
+    -webkit-app-region:drag;
+}
+
+.titleBar {
+    position: absolute;
+    margin-top: 0;
+    -webkit-app-region:drag;
+    height: 20px;
+    width: 100%;
 }
 
 .section {
