@@ -1,20 +1,24 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+
+// to build: electron-packager . --icon="img/fan.icns" --overwrite
+
+const electron = require('electron')
+
 const dragula = require('dragula');
 const print = (x) => console.log(x);
 const fs = require('fs');
+const savePath = (electron.app || electron.remote.app).getPath('userData')+"/data.txt";
 
 function save() {
   let tasks = document.getElementById('list').innerHTML;
-  print(tasks);
-  let dataFile = fs.createWriteStream('data/saveData.txt');
-  dataFile.write(tasks);
-  dataFile.end();
+  console.log(savePath);
+  fs.writeFileSync(savePath, tasks);
 }
 
 function load() {
-  fs.readFile('data/saveData.txt', 'utf8', function(err, data) {
+  fs.readFile(savePath, 'utf8', function(err, data) {
     if (err) throw err;
     console.log(data);
     document.getElementById('list').innerHTML = data;
