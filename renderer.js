@@ -46,7 +46,27 @@ function addTask() {
         } else {
           this.className = "task";
         }
-    })};
+    })
+    if (text[text.length-2] == "+") {
+      newDiv.innerHTML = "- " + text.slice(0,text.length-2)
+      if ((text[text.length-1] == "r") || (text[text.length-1] == "1")) {
+        newDiv.style.color = "red";
+      }
+      else if ((text[text.length-1] == "o") || (text[text.length-1] == "2")){
+        newDiv.style.color = "orange";
+      } else if ((text[text.length-1] == "y") || (text[text.length-1] == "3")){
+        newDiv.style.color = "yellow";
+      } else if ((text[text.length-1] == "g") || (text[text.length-1] == "4")){
+        newDiv.style.color = "green";
+      } else if ((text[text.length-1] == "b") || (text[text.length-1] == "5")){
+        newDiv.style.color = "blue";
+      } else if ((text[text.length-1] == "i") || (text[text.length-1] == "6")){
+        newDiv.style.color = "indigo";
+      } else if ((text[text.length-1] == "v") || (text[text.length-1] == "7")){
+        newDiv.style.color = "violet";
+      }
+    }
+  };
 
     document.getElementById('list').appendChild(newDiv);
     document.getElementById('addBox').value = '';
