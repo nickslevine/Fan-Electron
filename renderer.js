@@ -4,8 +4,7 @@
 
 // to build: electron-packager . --icon="img/fan.icns" --overwrite
 
-const electron = require('electron')
-
+const electron = require('electron');
 const dragula = require('dragula');
 const print = (x) => console.log(x);
 const fs = require('fs');
@@ -13,14 +12,14 @@ const savePath = (electron.app || electron.remote.app).getPath('userData')+"/dat
 
 function save() {
   let tasks = document.getElementById('list').innerHTML;
-  console.log(savePath);
+  // console.log(savePath);
   fs.writeFileSync(savePath, tasks);
 }
 
 function load() {
   fs.readFile(savePath, 'utf8', function(err, data) {
     if (err) throw err;
-    console.log(data);
+    // console.log(data);
     document.getElementById('list').innerHTML = data;
   });
 }
@@ -29,7 +28,15 @@ function addTask() {
     let text = document.getElementById('addBox').value;
     if (text != '') {
     let newDiv = document.createElement('div');
-    if (text[0]=="#") {
+    if (text.slice(0,2)=="##") {
+      newDiv.className = "subSection";
+      if (text[2]==" ") {
+        newDiv.innerHTML = text.slice(3);
+      } else {
+        newDiv.innerHTML = text.slice(2);
+      }
+    }
+    else if (text[0]=="#") {
       newDiv.className = "section";
       if (text[1]==" ") {
         newDiv.innerHTML = text.slice(2);
@@ -40,13 +47,14 @@ function addTask() {
     else {
       newDiv.className = "task";
       newDiv.innerHTML = "- " + text;
-      newDiv.addEventListener("dblclick", function(){
+      newDiv.addEventListener("dblclick", function() {
         if (this.className == "task") {
           this.className = "task done";
         } else {
           this.className = "task";
-        }
-    })
+          }
+      }, false);
+
     if (text[text.length-2] == "+") {
       newDiv.innerHTML = "- " + text.slice(0,text.length-2)
       if ((text[text.length-1] == "r") || (text[text.length-1] == "1")) {
@@ -78,7 +86,7 @@ dragula([document.getElementById("list")])
     // el.className = el.className.replace('ex-moved', '');
   }).on('drop', function (el) {
     // el.className += ' ex-moved';
-    console.log("moved")
+    //console.log("moved")
     setTimeout(()=>{save()}, 500)
     save();
   }).on('over', function (el, container) {
