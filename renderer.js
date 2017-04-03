@@ -100,7 +100,9 @@ function addTask() {
     save();
 }}
 
-dragula([document.getElementById("list")])
+dragula([document.getElementById("list")], {
+  removeOnSpill: true
+})
   .on('drag', function (el) {
     // el.className = el.className.replace('ex-moved', '');
   }).on('drop', function (el) {
@@ -110,10 +112,15 @@ dragula([document.getElementById("list")])
     save();
   }).on('over', function (el, container) {
     // container.className += ' ex-over';
-    el.remove();
-    save();
+    // el.remove();
+    // save();
+    // console.log("over")
   }).on('out', function (el, container) {
     // container.className = container.className.replace('ex-over', '');
-  });
+    // console.log("out", el, container);
+  }), {
+    removeOnSpill: true,
+    direction: 'horizontal'
+  };
 
 load();
