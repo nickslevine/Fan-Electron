@@ -1,7 +1,8 @@
-# Fan
 <p align="center">
 <img src="/img/fan.png_96x96.png">
 </p>
+
+# Fan
 
 Fan is a to do list app built with Electron. 
 
