@@ -1,6 +1,6 @@
 # Fan
 
-![](/img/fanscreenshot.png)
+![](/img/fan_screenshot.png)
 
 Fan is a to do list app built with Electron. 
 
